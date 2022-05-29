@@ -7,7 +7,10 @@ const console = require("console");
 const request = require("request");
 const API_KEY = "Bearer m_test_YzQ4YTYzMmItZDVjMS00NDNmLTgzMTUtMWM4MDgwYjM2N2JlYzkxYzk2MDktOTI4Yi00ZDJiLTk2OWMtNzhjZTM4YjMwODEzc18yMjA1MjgwMTUwNQ";
 const BASE_URL = "https://api.test.fincode.jp";
-const endpoint = "/v1/payments";
+const endpoint = {
+  payments: "/v1/payments",
+  customers: "/v1/customers",
+};
 
 
 app.use(express.static("public"));
@@ -42,7 +45,7 @@ app.post("/create-payment", async (req, res) => {
     amount: req.body.amount,  // 金額。有効性チェック以外で必須
   };
   const options = {
-    url: BASE_URL + endpoint,
+    url: BASE_URL + endpoint.payments,
     // proxy: PROXY_URL,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -66,6 +69,40 @@ app.post("/create-payment", async (req, res) => {
     }
   );  
 });
+
+// 顧客登録を行う
+app.post("/create-customer", async (req, res) => {
+  const DATA = {
+    name: req.body.name,
+    email: "test.sample.yamada@test.test",
+    addr_city: "港区",
+  };
+  const options = {
+    url: BASE_URL + endpoint.customers,
+    // proxy: PROXY_URL,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorization: API_KEY,
+    },
+    json: DATA,
+  }
+    
+  // fincodeに顧客登録のAPIを投げる
+  request.post(options, (error, response, body) => {
+    if (200 != response.statusCode) {
+      console.log("ERROR");
+      console.log(body);
+    } else {
+      console.log("SUCCESS");
+      console.log(body);
+    }
+
+    res.header('Content-Type', 'application/json; charset=utf-8')
+    res.send(body);
+    }
+  );  
+});
+
 
 app.listen(4242, () => console.log("Node server listening on port 4242!"));
 
