@@ -1,6 +1,10 @@
 
-let fincode = Fincode('p_test_ZGQyMTgzZDItNzgwYi00NjYxLWJhMTEtMjQxMmJkYmY4YWEwZjYwNDMyNzctNDYwMS00ODY3LTk1NzktZmQ1YjRjNDI3YjEwc18yMjA1MjgwMTUwNQ')
-appearance = {layout: "vertical"}
+let fincode = Fincode('p_test_aaaa');
+appearance = {
+    layout: "vertical",
+    // hideLabel: true,
+    labelExpire: '有効期限(MM／YY)'
+}
 console.log(fincode);
 let ui = fincode.ui(appearance);
 
