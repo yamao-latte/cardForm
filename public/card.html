@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Sample</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <script type="text/javascript" src="https://js.test.fincode.jp/v1/fincode.js" defer></script>
+  <link rel="stylesheet" href="./checkout.css" />
+</head>
+<body>
+  <div class="header">Header領域</div>
+  <div class="main">
+    <h1>カード入力フォーム</h1>
+    <form id="fincode-form" style="margin: 50px; padding: 20px">
+        <div id="fincode">
+        </div>
+        <button type="button" id="submit" >
+          <div class="spinner hidden" id="spinner"></div>
+          <span id="button-text">お支払い</span>
+        </button>
+    </form>
+  </div>
+  <div class="footer">
+    <span>Footer領域</span>
+    <a href="#">リンク</a>
+  </div>
+  <script type="text/javascript" src="./js/main.js" defer></script>
+</body>
+</html>
