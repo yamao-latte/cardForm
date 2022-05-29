@@ -1,6 +1,8 @@
 # use fincodeAPI
 
 fincodeAPIを使った支払いフロー、fincodeJSのUI機能を使ったカード情報入力フォームの作成をしています。
+fincodeJSで使用できるAPIに関してはフロントエンドで叩き、それ以外のAPIはバックエンドのnodeで叩いている。
+.envにシークレットキーを置いて読み込んでいるので各自作成する必要あり。
 
 ## 試したAPI
 
