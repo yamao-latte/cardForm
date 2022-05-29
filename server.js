@@ -5,7 +5,7 @@ const app = express();
 const stripe = require("stripe")('sk_test_09l3shTSTKHYCzzZZsiLl2vA');
 const console = require("console");
 const request = require("request");
-const API_KEY = "Bearer m_test_YzQ4YTYzMmItZDVjMS00NDNmLTgzMTUtMWM4MDgwYjM2N2JlYzkxYzk2MDktOTI4Yi00ZDJiLTk2OWMtNzhjZTM4YjMwODEzc18yMjA1MjgwMTUwNQ";
+const API_KEY = "Bearer m_test_aaaaa";
 const BASE_URL = "https://api.test.fincode.jp";
 const endpoint = {
   payments: "/v1/payments",
@@ -38,6 +38,9 @@ app.post("/create-payment-intent", async (req, res) => {
   
 });
 
+/**決済登録を行う
+ * amount 金額
+ */
 app.post("/create-payment", async (req, res) => {
   const DATA = {
     pay_type: "Card",          // 決済種別
@@ -70,8 +73,10 @@ app.post("/create-payment", async (req, res) => {
   );  
 });
 
-// 顧客登録を行う
-app.post("/create-customer", async (req, res) => {
+/**顧客登録を行う
+ * name 顧客名
+ */
+ app.post("/create-customer", async (req, res) => {
   const DATA = {
     name: req.body.name,
     email: "test.sample.yamada@test.test",
