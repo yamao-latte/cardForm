@@ -1,7 +1,14 @@
-# Accept a Payment
+# use fincodeAPI
 
-Build a simple checkout form to collect payment details. Included are some basic
-build and run scripts you can use to start up the application.
+fincodeAPIを使った支払いフロー、fincodeJSのUI機能を使ったカード情報入力フォームの作成をしています。
+
+## 試したAPI
+
+- 決済登録(node)
+- 顧客登録(node)
+- 決済実行(javaScript)
+- カード登録(javaScript)
+
 
 ## Running the sample
 
@@ -17,4 +24,4 @@ npm install
 npm start
 ~~~
 
-3. Go to [http://localhost:4242/checkout.html](http://localhost:4242/checkout.html)
+3. Go to [http://localhost:4242/card.html?amount=1200&name=customer01](http://localhost:4242/card.html?amount=1200&name=customer01)
