@@ -1,34 +1,27 @@
 
-let fincode = Fincode('p_test_aaaa');
+
+let elements;
+let payment;
+let card;
+let apikey;
+
+let fincode = Fincode('p_test_ZGQyMTgzZDItNzgwYi00NjYxLWJhMTEtMjQxMmJkYmY4YWEwZjYwNDMyNzctNDYwMS00ODY3LTk1NzktZmQ1YjRjNDI3YjEwc18yMjA1MjgwMTUwNQ');
 appearance = {
     layout: "vertical",
     // hideLabel: true,
     labelExpire: '有効期限(MM／YY)'
 }
-console.log(fincode);
 let ui = fincode.ui(appearance);
-
 ui.create("payments", appearance);
-
 ui.mount("fincode",'300');
-
-let elements;
-let payment;
-let card;
-
 initialize();
-// checkStatus();
-      
-// document
-//     .querySelector("#fincode")
-//     .addEventListener("submit", handleSubmit);
 
 document.getElementById("submit").addEventListener('click', handleSubmit);
 document.getElementById("submit-customer").addEventListener('click', handleSubmitCustomer);
 
 
-// Fetches a payment intent and captures the client secret
 async function initialize() {
+    // card.htmlのクエリパラメータにamount=値段の情報が入ってると仮定
     const items = { amount: getParam('amount') };
     const response = await fetch("/create-payment", {
         method: "POST",
@@ -44,7 +37,17 @@ async function initialize() {
         order_id: data.id,
         pay_type: data.pay_type
     }
-    console.log(response.body);
+    // .envに格納された公開キーを取得する
+    apikey = await getPublicKey();
+    console.log(apikey.publicKey);
+        
+}
+async function getPublicKey(){
+    const keyRes = await fetch("/publicKey", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    return await keyRes.json();
 }
 
 async function createCustomers() {

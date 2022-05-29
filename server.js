@@ -1,15 +1,16 @@
 // module.exports = router;
-
+require('dotenv').config();
+const env = process.env;
 const express = require("express");
 const app = express();
 const stripe = require("stripe")('sk_test_09l3shTSTKHYCzzZZsiLl2vA');
 const console = require("console");
 const request = require("request");
-const API_KEY = "Bearer m_test_aaaaa";
+const API_KEY = "Bearer "+env.secretKey;
 const BASE_URL = "https://api.test.fincode.jp";
 const endpoint = {
-  payments: "/v1/payments",
-  customers: "/v1/customers",
+  payments: "/v1/payments",     // 決済登録
+  customers: "/v1/customers",   // 顧客登録
 };
 
 
@@ -37,6 +38,14 @@ app.post("/create-payment-intent", async (req, res) => {
   });
   
 });
+
+app.get("/publicKey", async (req, res) => {
+  res.send({
+    publicKey: env.publicKey,
+  });
+  
+});
+
 
 /**決済登録を行う
  * amount 金額
